@@ -1,13 +1,22 @@
 style:
   breakpoint:
-    mobile: 400px
-  max-width: 650px
+    mobile: 480px
+  max-width: 640px
+  font:
+    family: "'neuzeit-grotesk', -apple-system, 'system-ui', 'Helvetica Neue', Helvetica, Arial, sans-serif"
+    family_secondary: "'PPNeueMontreal', -apple-system, 'system-ui', 'Helvetica Neue', Helvetica, Arial, sans-serif"
+    family_alt: "'GT Alpina Standard', -apple-system, 'system-ui', 'Helvetica Neue', Helvetica, Arial, sans-serif"
+    size:
+      small: 0.8rem
+      normal: 1rem
+      large: 1.2rem
+      x-large: 1.6rem
   color:
     black: '#464646' # rgb(70,70,70)
-    white: '#ffffff' # rgb(255,255,255)
+    white: '#FAF8F7' # rgb(255,255,255)
     grey: '#e1e1e1' # rgb(225,225,225)
-    grey-dark: '#767676' # rgb(118,118,118)
-    primary: '#1A90C6' # rgb(26,144,198)
+    grey-dark: '#242221' # rgb(118,118,118)
+    primary: '#000000' # rgb(26,144,198)
     red-light: '#ffe6e6' # rgb(255,230,230)
     red: '#fa4646' # rgb(250,70,70)
     red-dark: '#d21919' # rgb(210,25,25)

@@ -1,0 +1,11 @@
+<mj-raw>
+	<div class="footer-affiliates">
+		<mj-text color="{{ style.color['grey-dark'] }}" font-size="14px" line-height="1.7">
+			{% block logos %}
+				{% for logo in logos %}
+					<img class="affiliate-logo" src="{{ logo.src }}" alt="{{ logo.alt }}"/>
+				{% endfor %}
+			{% endblock %}
+		</mj-text>
+	</div>
+</mj-raw>

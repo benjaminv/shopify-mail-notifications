@@ -5,9 +5,9 @@
         href="{% block primary_url %}{{ primary.url | default('{{ shop.url }}') }}{% endblock %}"
         background-color="{{ style.color.primary }}"
         color="{{ style.color.white }}"
-        font-size="16px"
-        width="100%"
-        inner-padding="20px 25px"
+        font-size="14px"
+        width="230px"
+        inner-padding="15px 25px"
         css-class="action action--primary"
       >
         {% block primary_text %}
@@ -16,7 +16,7 @@
       </mj-button>
     {% endblock %}
 
-    {% block secondary_outer %}
+    {# {% block secondary_outer %}
       <mj-text
         align="center"
         font-size="14px"
@@ -28,6 +28,6 @@
           </a>
         {% endblock %}
       </mj-text>
-    {% endblock %}
+    {% endblock %} #}
   </mj-column>
 </mj-section>

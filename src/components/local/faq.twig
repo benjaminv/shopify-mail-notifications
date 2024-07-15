@@ -1,0 +1,47 @@
+{% block faq %}
+  <mj-section>
+    <mj-column>
+      
+      {% block footer %}
+        <mj-text
+          color="{{ style.color['grey-dark'] }}"
+          font-size="14px"
+          line-height="1.7"
+        >
+        {% verbatim %}
+          {% capture heading %}FREQUENTLY ASKED QUESTIONS{% endcapture %}
+          {% capture q1 %}Can I change or cancel my order?{% endcapture %}
+          {% capture a1 %}Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.{% endcapture %}
+          {% capture q2 %}My discount code hasn't applied?{% endcapture %}
+          {% capture a2 %}Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eismod tempor incid.{% endcapture %}
+          
+          <div class="faq-heading">{{ heading }}</div>
+          <div class="faq">
+            <p class="q">{{ q1 }}</p>
+            <p class="a">{{ a1 }}</p>
+            <p class="q">{{ q2 }}</p>
+            <p class="a">{{ a2 }}</p>
+          </div>
+        {% endverbatim %}
+        </mj-text>
+
+        <mj-text
+          color="{{ style.color['grey-dark'] }}"
+          font-size="14px"
+          line-height="1.7"
+        >
+        {% verbatim %}
+          {% capture heading %}NEED MORE HELP?{% endcapture %}
+          {% capture a1 %}Our friendly customer care team are here to help.
+          Please email customercare@kowtowclothing.com or visit our help centre for any other questions{% endcapture %}
+          
+          <div class="faq-heading">{{ heading }}</div>
+          <div class="faq">
+            <p class="a">{{ a1 }}</p>
+          </div>
+        {% endverbatim %}
+        </mj-text>
+      {% endblock %}
+    </mj-column>
+  </mj-section>
+{% endblock %}

@@ -80,7 +80,7 @@ module.exports = {
                 },
                 money_with_currency: input => {
                   const str = String(input)
-                  return `$${str.substring(0, str.length - 2)}.${str.substring(str.length - 2)} USD`
+                  return `NZ$ ${str.substring(0, str.length - 2)}.${str.substring(str.length - 2)}`
                 },
                 money_without_trailing_zeros: input => `$${String(input).slice(0, -2)}`,
                 shopify_asset_url: input => `${server}/assets/${input}`,

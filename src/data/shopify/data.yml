@@ -40,7 +40,7 @@ discount_applications:
 subtotal_price: 40000
 delivery_method: undefined
 shipping_price: 499
-current_total_duties: 1000
+current_total_duties: 0
 tax_price: 1500
 total_tip: 200
 total_price: 50000
@@ -48,16 +48,6 @@ net_payment: 15000
 total_outstanding: 35000
 total_discounts: 2000
 transactions:
-  -
-    # credit card
-    status: success
-    kind: authorization
-    gateway_display_name: Visa
-    amount: 10000
-    payment_details:
-      credit_card_company: Visa
-      credit_card_number: '•••• •••• •••• 1234'
-      credit_card_last_four_digits: 1234
   -
     # gift card
     status: success
@@ -73,6 +63,16 @@ transactions:
     kind: refund
     gateway: Bogus
     amount: 10000
+  -
+    # credit card
+    status: success
+    kind: authorization
+    gateway_display_name: Visa
+    amount: 10000
+    payment_details:
+      credit_card_company: Visa
+      credit_card_number: '•••• •••• •••• 1234'
+      credit_card_last_four_digits: 1234
 # additional draft order variables
 invoice_url: /
 reserve_inventory_until: 2020-11-13 18:50:18 +0100
@@ -119,10 +119,10 @@ shipping_address:
 # shop
 shop:
   email_logo_url: https://cdn.shopify.com/shopifycloud/shopify/assets/mailer/merchant/shopify_logo-ab8bfbd03d685aa04a8db0c119c5cbee279b5f9bd32a26f9ad3df0a96d9b7f83.png
-  email_logo_width: 150
-  email_accent_color: '#1A90C6'
+  email_logo_width: 200
+  email_accent_color: '#CCCCCC'
   name: My Shopify Store
-  email: contact@shopify.com
+  email: customercare@kowtowclothing.com
   url: /
   permanent_domain: /
 
@@ -185,7 +185,7 @@ line_items:
     product:
       title: Product title
     variant:
-      title: Default Title # use 'Default Title' to hide
+      title: navy / O/S # use 'Default Title' to hide
     sku: SKU1234
     selling_plan_allocation:
       selling_plan:
@@ -203,3 +203,6 @@ line_items:
     unit_price_measurement:
       reference_value: 1
       reference_unit: kg
+    tags: 
+      - tag1
+      - final-sale

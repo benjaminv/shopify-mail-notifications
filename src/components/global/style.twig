@@ -4,17 +4,65 @@
  # reference it like this: <mj-text css-class="my-class"></mj-text>
  #}
 
+{# global defaults #}
+@font-face {
+  font-family: 'PPNeueMontreal';
+  src: url("//nz.kowtowclothing.com/cdn/shop/t/444/assets/PPNeueMontreal-Book.woff2?v=90986768449493159721720501868") format('woff2'),
+      url("//nz.kowtowclothing.com/cdn/shop/t/444/assets/PPNeueMontreal-Book.woff?v=115849735055198413491720501868") format('woff');
+  font-weight: 400; /* or use 'normal' instead */
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'GT Alpina Standard';
+  src: url("//cdn.shopify.com/s/files/1/0053/6592/t/444/assets/GT-Alpina-Kow-Standard-Light.woff2?v=59085591921347503331720511710") format('woff2');
+  font-weight: 300;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'GT Alpina Standard';
+  src: url("//cdn.shopify.com/s/files/1/0053/6592/t/444/assets/GT-Alpina-Kow-Standard-Regular.woff2?v=37593959581650304311720511709") format('woff2');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+body, * {
+  font-family: {{ style.font.family }};
+}
+
+@media (min-width: {{ style.breakpoint.mobile }}) {
+  .mj-column-per-50:last-child {
+    padding-left: 50px;
+    box-sizing: border-box;
+  }
+}
+
+{# global styles #}
+
 {# container #}
 .container {
-  padding: 20px 10px 0;
+  padding: 48px 16px 8px;
   margin: 0px auto;
-  max-width: 650px;
+  max-width: 100%;
   background: {{ style.color.white }};
+  overflow: hidden;
 }
 
 @media (min-width: {{ style.breakpoint.mobile }}) {
   .container {
-    padding: 40px 20px 0;
+    padding: 64px 48px 24px;
+  }
+  .container > * {
+    padding: 0 40px;
+    box-sizing: border-box;
+  }
+  .container > *:has(.full-width) {
+    padding: 0;
+    overflow: hidden;
   }
 }
 
@@ -27,9 +75,77 @@ a, a:hover, a:active, a:visited {
 {# make link inside button full width #}
 .action.action--primary a {
   display: block !important;
+  border-radius: 0 !important;
 }
 
 {# typography #}
-p {
+p:not(:last-child) {
   margin: 0;
+  margin-bottom: 16px;
+}
+
+{# discount #}
+.discount {
+  color: {{ style.color.red }};
+  font-size: 14px;
+  font-style: italic;
+}
+
+{# affiliate logo #}
+.affiliate-logo:not(:last-child) {
+  margin-right: 20px;
+}
+
+.footer-affiliates {
+  padding-top: 16px;
+}
+
+@media (min-width: {{ style.breakpoint.mobile }}) {
+  .footer-affiliates {
+    text-align: right !important;
+    padding-top: 0 !important;
+  }
+}
+
+{# FAQ #}
+.faq-heading {
+  text-align: center;
+  text-transform: uppercase;
+  font-size: 16px;
+  margin-top: 72px;
+  margin-bottom: 16px;
+  font-family: {{ style.font.family_alt }};
+}
+
+.faq {
+  text-align: center;
+}
+
+.faq .q {
+  font-weight: bold;
+  margin-bottom: 8px;
+}
+
+.faq .q:not(:first-child) {
+  margin-top: 24px;
+}
+
+.faq .a {
+  margin-bottom: 16px;
+}
+
+{# headline #}
+.headline {
+  font-family: {{ style.font.family_alt }};
+  font-weight: 300;
+  font-size: 18px;
+  line-height: 1.4;
+}
+
+.customer-name {
+  font-family: {{ style.font.family_alt }};
+}
+
+.padded-small {
+  padding: 0 8px;
 }

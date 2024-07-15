@@ -9,7 +9,7 @@
 {# title - start #}
 {% block title %}
   {% verbatim %}
-    {% capture title %}Thank you for your purchase!{% endcapture %}
+    {% capture title %}Your order is confirmed!{% endcapture %}
   {% endverbatim %}
 
   {{ parent() }}
@@ -27,7 +27,8 @@
             {% when 'local' %}
               Hi {{ customer.first_name }}, we're getting your order ready for delivery.
             {% else %}
-              Hi {{ customer.first_name }}, we're getting your order ready to be shipped. We will notify you when it has been sent.
+              <p>Hi <span class="customer-name">{{ customer.first_name }}</span>, <br/> Thank you for your order. Please check <br/> the information below is correct.</p>
+              <p>Your order is being processed by our warehouse team. <br/> Current dispatch timeframe is 1-2 working days.</p>
           {% endcase %}
         {% endif %}
     {% endcapture %}
@@ -53,7 +54,7 @@
     <mj-section padding-bottom="20px">
       <mj-column>
         <mj-text
-          font-size="16px"
+          font-size="14px"
           line-height="1.7"
           color="{{ style.color['grey-dark'] }}"
         >
@@ -77,11 +78,11 @@
     {% include '@components::local/actions.twig' with {
       primary: {
         url: '{{ order_status_url }}',
-        text: 'View your order'
+        text: 'VIEW ORDER STATUS'
       }
     } %}
 
-  {% verbatim %}
+  {# {% verbatim %}
     <mj-raw>
       {% else %}
     </mj-raw>
@@ -89,7 +90,7 @@
 
     {% embed '@components::local/actions.twig' %}
       {% block secondary_outer %}{% endblock %}
-    {% endembed %}
+    {% endembed %} #}
 
   {% verbatim %}
     <mj-raw>
@@ -97,12 +98,40 @@
     </mj-raw>
   {% endverbatim %}
 
+  <mj-section>
+    <mj-column css-class="full-width">
+      <mj-divider border-color="{{ style.color['black'] }}" padding="48px 0 40px" />
+    </mj-column>
+  </mj-section>
+
+  <mj-section padding="{{ padding | default('0 0 20px') }}">
+    <mj-column>
+      {% block topline_outer %}
+        <mj-text
+          align="center"
+          color="{{ style.color['grey-dark'] }}"
+          font-size="16px"
+          padding-bottom="20px"
+        >
+          {% block topline %}
+            {{ topline | default('ORDER {{ name }}') }}
+            {% verbatim %}
+              <br/>
+              {% assign current_date = date | date: "%b %d" %}
+              {{ current_date }}
+            {% endverbatim %}
+          {% endblock %}
+        </mj-text>
+      {% endblock %}
+    </mj-column>
+  </mj-section>
+
   {% include '@components::local/gift-card-notice.twig' %}
 
-  {% include '@components::local/headline.twig' with {
+  {# {% include '@components::local/headline.twig' with {
     headline: 'Order summery',
     padding: '20px 0 5px'
-  } %}
+  } %} #}
 
   <mj-wrapper>
     <mj-raw>
@@ -128,11 +157,25 @@
 
   <mj-section>
     <mj-column>
-      <mj-spacer height="50px" />
+      <mj-spacer height="25px" />
     </mj-column>
   </mj-section>
 
+  {% include '@components::local/payment-method.twig' %}
+
+  {# <mj-section>
+    <mj-column>
+      <mj-spacer height="50px" />
+    </mj-column>
+  </mj-section> #}
+
   {% include '@components::local/customer-information.twig' %}
+  <mj-section>
+    <mj-column css-class="full-width">
+      <mj-divider border-color="{{ style.color['black'] }}" padding="24px 0 16px" />
+    </mj-column>
+  </mj-section>
+  {% include '@components::local/faq.twig' %}
 {% endblock %}
 {# content - end #}
 
