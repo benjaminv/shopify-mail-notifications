@@ -1,21 +1,9 @@
 <mj-section padding="{{ padding | default('0 0 20px') }}">
   <mj-column>
-    {# {% block topline_outer %}
-      <mj-text
-        align="center"
-        color="{{ style.color['grey-dark'] }}"
-        font-size="14px"
-        padding-bottom="20px"
-      >
-        {% block topline %}
-          {{ topline | default('ORDER {{ name }}') }}
-        {% endblock %}
-      </mj-text>
-    {% endblock %} #}
-
     {% block headline_outer %}
       <mj-text
         align="center"
+        font-family="{{ style.font.family_alt }}"
         font-size="19px"
         line-height="1.4"
         padding-bottom="20px"
@@ -29,6 +17,7 @@
     {% block text_outer %}
       <mj-text
         align="center"
+        font-family="{{ style.font.family_alt }}"
         font-size="14px"
         line-height="1.7"
         color="{{ style.color['grey-dark'] }}"

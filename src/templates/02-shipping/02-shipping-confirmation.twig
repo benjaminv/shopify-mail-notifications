@@ -11,18 +11,18 @@
   {% verbatim %}
     {% capture title %}
       {% if fulfillment.item_count == item_count %}
-        Your order is on the way
+        Your order is on the way!
       {% elsif fulfillment.item_count > 1 %}
         {% if fulfillment_status == 'fulfilled' %}
-          The last items in your order are on the way
+          Final shipment of your order are on the way!
         {% else %}
-          Some items in your order are on the way
+          Part of your order is on the way!
         {% endif %}
       {% else %}
         {% if fulfillment_status == 'fulfilled' %}
-          The last item in your order is on the way
+          Final shipment of your order are on the way!
         {% else %}
-          One item in your order is on the way
+          Part of your order is on the way!
         {% endif %}
       {% endif %}
     {% endcapture %}
@@ -35,23 +35,81 @@
 {# preview - start #}
 {% block preview %}
   {% verbatim %}
-    {% capture preview %}
-      {% if fulfillment.item_count == item_count %}
-        Your order is on the way. Track your shipment to see the delivery status.
-      {% elsif fulfillment.item_count > 1 %}
-        {% if fulfillment_status == 'fulfilled' %}
-          The last items in your order are on the way. Track your shipment to see the delivery status.
-        {% else %}
-          Some items in your order are on the way. Track your shipment to see the delivery status.
-        {% endif %}
-      {% else %}
-        {% if fulfillment_status == 'fulfilled' %}
-          The last item in your order is on the way. Track your shipment to see the delivery status.
-        {% else %}
-          One item in your order is on the way. Track your shipment to see the delivery status.
-        {% endif %}
+    {% capture tracking_company %}
+      {% if fulfillment.tracking_numbers.size > 0 and fulfillment.tracking_company %}
+        {{ fulfillment.tracking_company }}
       {% endif %}
     {% endcapture %}
+
+    {% if fulfillment.tracking_company %}
+      {% assign with_tracking_company = ' with ' | append: tracking_company %}
+    {% else %}
+      {% assign with_tracking_company = '' %}
+    {% endif %}
+
+    {# {% capture fulfillment_status_text %}
+      {% if fulfillment_status == 'fulfilled' %}
+        (fulfilled)
+      {% else %}
+        (partially fulfilled)
+      {% endif %}
+    {% endcapture %} #}
+
+    {% capture preview %}
+      <!-- greeting -->
+      <div class="intro-text">
+        <p>Hi {{ customer.first_name }}, <br/>
+
+          {% if shipping_method.title == "Click and Collect — Wellington Store" %}
+            Your order is ready for you to collect from our Wellington Flagship Store located at 29 College Street.</p>
+            <p>When you arrive one of our retail staff will assist you.</p>
+            <p>Our opening hours are:
+              <br>Monday - Saturday 10am – 5pm
+              <br>Sunday 11am – 4pm
+            </p>
+            <p>Click and Collect orders will be held in-store for 14 days. If your order is not collected within this timeframe, it will be cancelled and you will be refunded via your original payment method. </p>
+            <p>If you have any questions, please do not hesitate to get in touch. You can contact us via email at wellington@kowtowclothing.com, or by phone on 04 555 0457.</p>
+            <p>We look forward to seeing you soon.</p>
+
+          {% elsif shipping_method.title == "Click and Collect — Newmarket Store" %}
+            <p>Thank you for shopping with us.</p>
+            <p>Your order is ready for you to collect from our Newmarket Store located at 6 York Street.</p>
+            <p>When you arrive one of our retail staff will assist you.</p>
+            <p>Our opening hours are:
+              <br>Monday - Saturday 10am – 5pm
+              <br>Sunday 11am – 4pm
+            </p>
+            <p>Click and Collect orders will be held in-store for 14 days. If your order is not collected within this timeframe, it will be cancelled and you will be refunded via your original payment method. </p>
+            <p>If you have any questions, please do not hesitate to get in touch. You can contact us via email at newmarket@kowtowclothing.com, or by phone on 09 869 4583.</p>
+            <p>We look forward to seeing you soon.</p>
+
+          {% else %}
+            {% if fulfillment.item_count == item_count %}
+              <!-- all dispatch in one shipment -->
+              Your order is on the way{{ with_tracking_company }}.
+            {% elsif fulfillment.item_count > 1 %}
+              {% if fulfillment_status == 'fulfilled' %}
+                <!-- last shipment -->
+                The final shipment of your order is on its way{{ with_tracking_company }}.
+              {% else %}
+                <!-- partial shipment -->
+                Part of your order is on its way{{ with_tracking_company }}.
+              {% endif %}
+            {% else %}
+              {% if fulfillment_status == 'fulfilled' %}
+                <!-- last item of order -->
+                The final shipment of your order is on its way{{ with_tracking_company }}.
+              {% else %}
+                <!-- last item of order -->
+                Part of your order is on its way{{ with_tracking_company }}.
+              {% endif %}
+            {% endif %}
+          {% endif %}
+        </p>
+        <p>Our current delivery time frames are 2-3 working days. Please refer to our <a href="{{ order_status_url }}" target="_blank" rel="noopener noreferrer">shipping page</a> for any current updates.</p>
+      </div>
+    {% endcapture %}
+    
   {% endverbatim %}
 
   {{ parent() }}
@@ -65,35 +123,31 @@
     text: '{{ preview }}'
   } %}
 
-  {% include '@components::local/estimated-delivery.twig' %}
-
   {% verbatim %}
     <mj-raw>
-      {% if order_status_url %}
+      {% if fulfillment.tracking_url and fulfillment.tracking_company %}
     </mj-raw>
   {% endverbatim %}
 
     {% include '@components::local/actions.twig' with {
       primary: {
-        url: '{{ order_status_url }}',
-        text: 'VIEW ORDER STATUS'
+        url: '{{ fulfillment.tracking_url }}',
+        text: 'TRACK ON {{ fulfillment.tracking_company | upcase }}'
       }
     } %}
 
   {% verbatim %}
     <mj-raw>
-      {% else %}
+      {% elsif fulfillment.tracking_url %}
     </mj-raw>
   {% endverbatim %}
 
-    {% embed '@components::local/actions.twig' with {
-      primary: {
-        url: '{{ shop.url }}',
-        text: 'Visit our store'
-      }
-    } %}
-      {% block secondary_outer %}{% endblock %}
-    {% endembed%}
+  {% include '@components::local/actions.twig' with {
+    primary: {
+      url: '{{ fulfillment.tracking_url }}',
+      text: 'TRACK THIS SHIPMENT'
+    }
+  } %}
 
   {% verbatim %}
     <mj-raw>
@@ -101,7 +155,39 @@
     </mj-raw>
   {% endverbatim %}
 
-  {% include '@components::local/tracking.twig' %}
+  <mj-section>
+    <mj-column css-class="full-width">
+      <mj-divider border-color="{{ style.color['black'] }}" padding="48px 0 40px" />
+    </mj-column>
+  </mj-section>
+
+  <mj-section padding="{{ padding | default('0 0 20px') }}">
+    <mj-column>
+      {% block topline_outer %}
+        <mj-text
+          font-size="20px"
+          font-weight="700"
+          align="center"
+        >
+          {% block topline %}
+            {{ topline | default('ORDER {{ name }}') }}
+          {% endblock %}
+        </mj-text>
+        <mj-text
+          font-size="16px"
+          align="center"
+        >
+          {% verbatim %}
+            <br/>
+            {% assign current_date = date | date: "%b %d" %}
+            Shipped at: {{ current_date }}
+          {% endverbatim %}
+        </mj-text>
+          {% include '@components::local/estimated-delivery.twig' %}
+          {% include '@components::local/tracking.twig' %}
+      {% endblock %}
+    </mj-column>
+  </mj-section>
 
   {% include '@components::local/headline.twig' with {
     headline: 'Items in this shipment',
@@ -111,7 +197,7 @@
   <mj-wrapper padding-bottom="20px">
     <mj-raw>
       {{ development
-        ? '{% for line in line_items %}{% for i in (1..2) %}'
+        ? '{% for line in line_items %}'
         : '{% for line in fulfillment.fulfillment_line_items %}'
       }}
     </mj-raw>
@@ -122,10 +208,35 @@
 
     <mj-raw>
       {{ development
-        ? '{% endfor %}{% endfor %}'
+        ? '{% endfor %}'
         : '{% endfor %}'
       }}
     </mj-raw>
   </mj-wrapper>
+  <mj-section>
+    <mj-column css-class="full-width">
+      <mj-divider border-color="{{ style.color['black'] }}" padding="24px 0 16px" />
+    </mj-column>
+  </mj-section>
+  {% embed '@components::local/faq.twig' %}
+    {% block faq_content_1 %}
+        <mj-text
+          color="{{ style.color['grey-dark'] }}"
+          font-size="14px"
+          line-height="1.7"
+        >
+        {% verbatim %}
+          {% capture heading %}FREQUENTLY ASKED QUESTIONS{% endcapture %}
+          {% capture q1 %}Why has only part of my order shipped?{% endcapture %}
+          {% capture a1 %}Some items in your order may be fulfilled from different store locations. You will receive a new  shipping update with a tracking number for each part of your order.{% endcapture %}
+          <div class="faq-heading">{{ heading }}</div>
+          <div class="faq">
+            <p class="q">{{ q1 }}</p>
+            <p class="a">{{ a1 }}</p>
+          </div>
+        {% endverbatim %}
+        </mj-text>
+      {% endblock %}
+  {% endembed %}
 {% endblock %}
 {# content - end #}

@@ -21,16 +21,28 @@
   {% verbatim %}
     {% capture preview %}
         {% if requires_shipping %}
-          {% case delivery_method %}
-            {% when 'pick-up' %}
-              You’ll receive an email when your order is ready for pickup.
-            {% when 'local' %}
-              Hi {{ customer.first_name }}, we're getting your order ready for delivery.
-            {% else %}
-              <p>Hi <span class="customer-name">{{ customer.first_name }}</span>, <br/> Thank you for your order. Please check <br/> the information below is correct.</p>
-              <p>Your order is being processed by our warehouse team. <br/> Current dispatch timeframe is 1-2 working days.</p>
-          {% endcase %}
+          <div class="intro-text">
+            {% case shipping_method.title %}
+              {% when 'Click and Collect — Wellington Store' %}
+                <p>Hi {{ customer.first_name }}, <br/>We are safely preparing your order for collection from our Wellington Flagship Store, located at 29 College Street.</p>
+                <p>Once your order is ready to collect in-store, we will send you a confirmation email.</p>
+              {% when 'Click and Collect — Newmarket Store' %}
+                <p>Hi {{ customer.first_name }}, <br/> We are safely preparing your order for collection from our Newmarket Store, located at 6 York Street.</p>
+                <p>Once your order is ready to collect in-store, we will send you a confirmation email. Please note that this service may take up to 2-5 working days.</p>
+              {% else %}
+                <p>Hi {{ customer.first_name }}, <br/> Thank you for your order with us.</p>
+                <p>Your order is now being processed, our current dispatch time frame is 1-2 working days. Please note that shipping dates are additional to this dispatch time frame.</p>
+            {% endcase %}
+
+            {% if gateway == "Bank Deposit" %}
+              <br>
+              <p>Hi {{ customer.first_name }}, <br/>If you have chosen the Bank Deposit Option to pay for your purchase, and you haven't transferred funds yet, here are the details of our account: </p>
+              <p>Kowtow Clothing Ltd<br>011845-0007401-00</p>
+              <p>Your order will be processed after payment has been received.</p>
+            {% endif %}
+          </div>
         {% endif %}
+        
     {% endcapture %}
   {% endverbatim %}
 
@@ -47,30 +59,6 @@
 
   {% verbatim %}
     <mj-raw>
-      {% if requires_shipping and delivery_instructions != blank %}
-    </mj-raw>
-  {% endverbatim %}
-
-    <mj-section padding-bottom="20px">
-      <mj-column>
-        <mj-text
-          font-size="14px"
-          line-height="1.7"
-          color="{{ style.color['grey-dark'] }}"
-        >
-          <strong>Delivery information:</strong> {% verbatim %}{{ delivery_instructions }}{% endverbatim %}
-        </mj-text>
-      </mj-column>
-    </mj-section>
-
-  {% verbatim %}
-    <mj-raw>
-      {% endif %}
-    </mj-raw>
-  {% endverbatim %}
-
-  {% verbatim %}
-    <mj-raw>
       {% if order_status_url %}
     </mj-raw>
   {% endverbatim %}
@@ -82,7 +70,7 @@
       }
     } %}
 
-  {# {% verbatim %}
+  {% verbatim %}
     <mj-raw>
       {% else %}
     </mj-raw>
@@ -90,7 +78,7 @@
 
     {% embed '@components::local/actions.twig' %}
       {% block secondary_outer %}{% endblock %}
-    {% endembed %} #}
+    {% endembed %}
 
   {% verbatim %}
     <mj-raw>
@@ -180,7 +168,7 @@
 {# content - end #}
 
 {# footer - start #}
-{% block footer %}
+{# {% block footer %}
   {{ parent() }}
 
   {% if production %}
@@ -196,5 +184,5 @@
       {% endverbatim %}
     </mj-raw>
   {% endif %}
-{% endblock %}
+{% endblock %} #}
 {# footer - end #}

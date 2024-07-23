@@ -176,7 +176,7 @@
 								<div style="text-align: right;">
 									{% verbatim %}
 										{% if line_item.original_line_price != line_item.final_line_price %}{% endverbatim %}
-										<span class="original_price" style="display: inline-block; margin-right: 0.5rem">
+										<span class="original_price" style="display: inline-block; margin-right: 0.25rem">
 											<del style="font-size: 14px; color: {{ style.color['grey-dark'] }}">
 												{% verbatim %}
 													{{ line_item.original_line_price | money }}

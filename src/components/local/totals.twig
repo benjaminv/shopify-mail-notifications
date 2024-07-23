@@ -284,7 +284,13 @@
 		{% endverbatim %}
 
 		<mj-section>
-			<mj-column border-top="1px solid {{ style.color.grey }}" padding-top="8px">
+			<mj-column>
+				<mj-divider border-color="{{ style.color['grey'] }}" padding="0 0 16px" />
+			</mj-column>
+		</mj-section>
+
+		<mj-section>
+			<mj-column>
 				<mj-table>
 					{% verbatim %}
 						{% for transaction in transactions %}{% endverbatim %}

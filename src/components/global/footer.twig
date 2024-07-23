@@ -6,34 +6,28 @@
       </mj-column>
     </mj-section>
     <mj-section css-class="padded-small">
-      <mj-column>
-        {% block footer_lower_text %}
-          <mj-text
-            color="{{ style.color['grey-dark'] }}"
-            font-size="20px"
-            line-height="1.5"
-          >
-            {% block text %}
-              {{ text | default('All Fairtrade organic cotton. <br/>All plastic-free.')}}
-            {% endblock %}
-          </mj-text>
-        {% endblock %}
-      </mj-column>
-      <mj-column>
-        {% block footer_lower_affiliates %}
-          {% include '@components::local/affiliates.twig' with {
-            logos: [
-              {
-                src: development ? server ~ '/assets/logo1.png' : "https://cdn.shopify.com/s/files/1/0053/6592/files/fairtrade-logo.png?v=1721014098",
-                alt: 'Logo 1'
-              },
-              {
-                src: development ? server ~ '/assets/logo2.png' : "https://cdn.shopify.com/s/files/1/0053/6592/files/b-corp-logo.png?v=1721014097",
-                alt: 'Logo 2'
-              }
-            ]
-          } %}
-        {% endblock %}
+      <mj-column css-class="full-width">
+        <mj-table>
+          <tr>
+            <td valign="top" class="footer-bottom__text">
+              All Fairtrade organic cotton. <br/>All plastic-free.
+            </td>
+            <td valign="top" class="nowrap" align="right">
+              {% include '@components::local/affiliates.twig' with {
+                logos: [
+                  {
+                    src: development ? server ~ '/assets/logo1.png' : "https://cdn.shopify.com/s/files/1/0053/6592/files/fairtrade-logo.png?v=1721014098",
+                    alt: 'Logo 1'
+                  },
+                  {
+                    src: development ? server ~ '/assets/logo2.png' : "https://cdn.shopify.com/s/files/1/0053/6592/files/b-corp-logo.png?v=1721014097",
+                    alt: 'Logo 2'
+                  }
+                ]
+              } %}
+            </td>
+          </tr>
+        </mj-table>
       </mj-column>
     </mj-section>
     <mj-section>

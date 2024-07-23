@@ -1,8 +1,7 @@
 {% block faq %}
   <mj-section>
     <mj-column>
-      
-      {% block footer %}
+      {% block faq_content_1 %}
         <mj-text
           color="{{ style.color['grey-dark'] }}"
           font-size="14px"
@@ -11,10 +10,7 @@
         {% verbatim %}
           {% capture heading %}FREQUENTLY ASKED QUESTIONS{% endcapture %}
           {% capture q1 %}Can I change or cancel my order?{% endcapture %}
-          {% capture a1 %}Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.{% endcapture %}
-          {% capture q2 %}My discount code hasn't applied?{% endcapture %}
-          {% capture a2 %}Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eismod tempor incid.{% endcapture %}
-          
+          {% capture a1 %}We may be able to make changes to your order, depending on what stage it is at with fulfilment. We recommend reaching out to us as soon as possible and we will do our best to update it. {% endcapture %}
           <div class="faq-heading">{{ heading }}</div>
           <div class="faq">
             <p class="q">{{ q1 }}</p>
@@ -24,17 +20,28 @@
           </div>
         {% endverbatim %}
         </mj-text>
-
+      {% endblock %}
+      {% block faq_content_2 %}
         <mj-text
           color="{{ style.color['grey-dark'] }}"
           font-size="14px"
           line-height="1.7"
         >
         {% verbatim %}
+          {% capture faq_page_link %}
+            {% case shop.permanent_domain %}
+              {% when 'kowtowclothing.myshopify.com' %}
+                <a href="https://kowtowclothing-nz.gorgias.help" target="_blank" rel="noopener noreferrer">FAQ's page</a>
+              {% when 'kowtowus.myshopify.com' %}
+                <a href="https://kowtowclothing-us.gorgias.help" target="_blank" rel="noopener noreferrer">FAQ's page</a>
+              {% when 'kowtowaustralia.myshopify.com' %}
+                <a href="https://kowtowclothing-au.gorgias.help" target="_blank" rel="noopener noreferrer">FAQ's page</a>
+              {% else %}
+                <a href="https://kowtowclothing-nz.gorgias.help" target="_blank" rel="noopener noreferrer">FAQ's page</a>
+            {% endcase %}
+          {% endcapture %}
           {% capture heading %}NEED MORE HELP?{% endcapture %}
-          {% capture a1 %}Our friendly customer care team are here to help.
-          Please email customercare@kowtowclothing.com or visit our help centre for any other questions{% endcapture %}
-          
+          {% capture a1 %}Visit our comprehensive {{ faq_page_link }} for more information. <br/>If you can't find what you're looking for, our friendly Customer Care team are here to help. Please email <a href="mailto:customercare@kowtowclothing.com" target="_blank" rel="noopener noreferrer">customercare@kowtowclothing.com</a> or live chat us.{% endcapture %}
           <div class="faq-heading">{{ heading }}</div>
           <div class="faq">
             <p class="a">{{ a1 }}</p>

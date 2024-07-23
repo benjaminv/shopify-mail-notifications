@@ -65,7 +65,6 @@
     text: '{{ preview }}'
   } %}
 
-  {% include '@components::local/estimated-delivery.twig' %}
 
   {% verbatim %}
     <mj-raw>
@@ -101,7 +100,7 @@
     </mj-raw>
   {% endverbatim %}
 
-  {% include '@components::local/tracking.twig' %}
+  {# {% include '@components::local/tracking.twig' %} #}
 
   {% include '@components::local/headline.twig' with {
     headline: 'Items in this shipment',

@@ -1,0 +1,279 @@
+{% if shipping_method.title == "Click and Collect — Wellington Store" %}
+{% capture email_title %}READY FOR COLLECTION{% endcapture %}
+{% elsif shipping_method.title == "Click and Collect — Newmarket Store" %}
+{% capture email_title %}READY FOR COLLECTION{% endcapture %}
+{% else %}
+{% capture email_title %}SHIPPING CONFIRMATION{% endcapture %}
+{% endif %}
+
+{% capture email_body %}
+
+
+  {% if requires_shipping %}
+
+      {% if shipping_method.title == "Click and Collect — Wellington Store" %}
+        <p>Thank you for shopping with us.</p>
+        <p>Your order is ready for you to collect from our Wellington Flagship Store located at 29 College Street.</p>
+        <p>When you arrive one of our retail staff will assist you.</p>
+        <p>Our opening hours are:
+          <br>Monday - Saturday 10am – 5pm
+          <br>Sunday 11am – 4pm
+        </p>
+<p>Click and Collect orders will be held in-store for 14 days. If your order is not collected within this timeframe, it will be cancelled and you will be refunded via your original payment method. </p>
+        <p>If you have any questions, please do not hesitate to get in touch. You can contact us via email at wellington@kowtowclothing.com, or by phone on 04 555 0457.</p>
+        <p>We look forward to seeing you soon.</p>
+        {% elsif shipping_method.title == "Click and Collect — Newmarket Store" %}
+        <p>Thank you for shopping with us.</p>
+        <p>Your order is ready for you to collect from our Newmarket Store located at 6 York Street.</p>
+        <p>When you arrive one of our retail staff will assist you.</p>
+       <p>Our opening hours are:
+          <br>Monday - Saturday 10am – 5pm
+          <br>Sunday 11am – 4pm
+        </p>
+<p>Click and Collect orders will be held in-store for 14 days. If your order is not collected within this timeframe, it will be cancelled and you will be refunded via your original payment method. </p>
+        <p>If you have any questions, please do not hesitate to get in touch. You can contact us via email at newmarket@kowtowclothing.com, or by phone on 09 869 4583.</p>
+        <p>We look forward to seeing you soon.</p>
+      {% else %}  
+        <p>Thank you for shopping with us – your order is now on its way!</p><p>You can find more information about our shipping timeframes <span style="text-decoration: underline;"><a href="https://nz.kowtowclothing.com/pages/shipping" target="_blank">here</a></span></p>
+       <br>
+        <p>To manage all aspects of your delivery (redirect, add delivery instructions & add authority to leave), or to track your order visit <a href="https://www.nzpost.co.nz/tools/tracking" target="_blank">https://www.nzpost.co.nz/</a> and enter the following number in the <i>Track a Parcel</i> field:</p><br>
+        <span style="text-align:center;text-transform: uppercase;font-weight:700;margin:20px auto;border:1px solid #ccc;display: block;width: 65%;padding: 15px;text-decoration:none;">{{ fulfillment.tracking_number }}</span><br>
+        <p class="grey"></p>
+      {% endif %}
+
+  {% endif %}
+
+{% endcapture %}
+
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+  <title>{{ email_title }}</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+  <meta name="viewport" content="width=device-width">
+  <link rel="stylesheet" type="text/css" href="/assets/notifications/styles.css">
+  <style>
+    .button__cell { background:black; border-radius:0;}
+    .button__text {padding: 15px;letter-spacing: .1em;font-weight: 500;}
+    .main-action-cell{float:none;width: 70%;margin-left:auto;margin-right:auto;}
+    .order-list__item-price, .order-list__item-title, .order-list__item-variant {color:black;font-weight:inherit;}
+    .order-list__item {border:0;}
+    /*.section, section, */.footer {border:0;}
+    a, a:hover, a:active, a:visited { text-decoration:underline; color:black;}
+    a, p, h1, h2, h3, td, span {font-family: "neuzeit-grotesk", -apple-system, BlinkMacSystemFont, "Helvetica Neue", "Helvetica", "Arial", sans-serif; letter-spacing:.04em; font-weight:300;font-size:12px;}
+    h1 {font-weight: 700;text-align: center;font-size: 2.8em;letter-spacing: .12em;padding:20px 0;color:black;}
+    h3 {letter-spacing:.1em;text-transform:uppercase;margin:0;font-size:11px;}
+    .grey {color:#bbb;}
+    p {color:black;} 
+    strong {color:black;font-weight:600;font-size:12px;letter-spacing:.06em;}
+    @media only screen and (max-device-width: 568px){
+      p, span, a, strong {
+      font-size:10px !important;
+      letter-spacing:.02em !important;
+    }
+    h3 {
+      font-size:9.5px !important;
+    }
+    h1{
+      font-size:20px !important;
+    }
+    .logo-img {
+      width:75px!important;
+      height:auto!important;
+    }
+    .subtotal-spacer{
+      display:none;
+    }
+    .main-action-cell{
+      width:100%;
+      margin-right:auto!important;
+    }
+    }
+
+  </style>
+</head>
+
+  <body>
+<!--[if !gte mso 9]><!--><span style="display:none; font-size:0px; line-height:0px; max-height:0px; max-width:0px; opacity:0; overflow:hidden; visibility:hidden; mso-hide:all;">Thank you for shopping with us.</span>
+    <!-- Insert ‌  hack after hidden preview text --><span style="display:none; font-size:0px; line-height:0px; max-height:0px; max-width:0px; opacity:0; overflow:hidden; visibility:hidden; mso-hide:all;"> ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌</span>
+    <!--<![endif]-->
+    <table class="body">
+      <tr>
+        <td>
+
+<table class="header row">
+  <tr>
+    <td class="header__cell">
+      <center>
+
+        <table class="container">
+          <tr>
+            <td>
+
+              <table class="row">
+                <tr>
+                  <td class="shop-name__cell">
+                    {%- if shop.email_logo_url %}
+                      <img class="logo-img" src="{{shop.email_logo_url}}" alt="{{ shop.name }}" width="{{ shop.email_logo_width }}">
+                    {%- else %}
+                      <h1 class="shop-name__text">
+                        <a href="{{shop.url}}">{{ shop.name }}</a>
+                      </h1>
+                    {%- endif %}
+                  </td>
+                  <td>
+                    <h3 class="grey" style="text-align:right;">ORDER {{ order_name }}</h3>
+                  </td>   
+                </tr>
+              </table>
+
+              <table class="row" style="margin-top:20px;">
+                  <tr>
+                    <td align="center" valign="middle" style="padding:18px 0;border-top:1px solid black;border-bottom:1px solid black;">
+                      <h3 style="font-weight:700;">ORDER PLACED&nbsp;&nbsp;&nbsp;>&nbsp;&nbsp;&nbsp;IN&nbsp;PROGRESS&nbsp;&nbsp;&nbsp;>&nbsp;&nbsp;&nbsp;<u>SHIPPED</u></h3>
+                    </td>
+                  </tr>
+              </table>
+
+            </td>
+          </tr>
+        </table>
+
+      </center>
+    </td>
+  </tr>
+</table>
+
+
+<table class="row content">
+  <tr>
+    <td class="content__cell">
+      <center>
+        <table class="container">
+          <tr>
+            <td> 
+              <h1>{{ email_title }}</h1>
+              <p>{{ email_body }}</p>
+            </td>
+          </tr>
+        </table>
+      </center>
+    </td>
+  </tr>
+</table>
+
+
+<table class="row section">
+  <tr>
+    <td class="section__cell" style="padding-bottom:0;">
+      <center>
+        <table class="container">
+          <tr>
+            <td>
+              <h3><strong>Your delivery information</strong></h3><br>
+            </td>
+          </tr>
+        </table>
+        <table class="container">
+          <tr>
+            <td>
+              
+            <table class="row">
+              <tr>
+                {% if requires_shipping and shipping_address %}
+                <td class="customer-info__item">
+                  <strong>Shipping Address</strong>
+                  <p>
+  {{ shipping_address.name }}<br/>
+{% if shipping_address.company %}
+  {{ shipping_address.company }}<br/>
+  {% endif %}
+  {{ shipping_address.address1 }}<br/>
+  {% if shipping_address.address2 %}
+  {{ shipping_address.address2 }}<br/>
+  {% endif %}
+  {{ shipping_address.city }} {{ shipping_address.zip }}
+  <br/>{{ shipping_address.country }}
+</p>
+
+                </td>
+                {% endif %}
+              </tr>
+            </table>
+            <table class="row">
+              <tr>
+                {% if requires_shipping and shipping_address %}
+                <td class="customer-info__item">
+                  <strong>Estimated Delivery Date</strong>
+                  <p>{{ "now" | date: "%s" | plus:129600 | date: "%d/%m/%Y" }}</p>
+                </td>
+                {% endif %}
+              </tr>
+            </table>
+
+            {% if order_status_url %}
+
+<table class="row actions">
+  <tr>
+    <td class="actions__cell">
+
+      <table class="button main-action-cell">
+        <tr>
+          <td class="button__cell"><a href="{{ order_status_url }}" class="button__text">VIEW ORDER STATUS</a></td>
+        </tr>
+      </table>
+
+    </td>
+  </tr>
+</table>
+
+{% else %}{% if shop.url %}
+
+<table class="row actions">
+  <tr>
+    <td class="actions__cell">
+      <table class="button main-action-cell">
+        <tr>
+          <td class="button__cell"><a href="{{ shop.url }}" class="button__text">VISIT OUR STORE</a></td>
+        </tr>
+      </table>
+    </td>
+  </tr>
+</table>
+
+{% endif %}
+
+{% endif %}
+
+            </td>
+          </tr>
+        </table>
+      </center>
+    </td>
+  </tr>
+</table>
+
+          <table class="row footer">
+  <tr>
+    <td class="footer__cell">
+      <center>
+        <table class="container">
+          <tr>
+            <td style="padding:25px 10px;border-top:1px solid black;border-bottom:1px solid black;">
+              <p><span style="font-weight:700;">Something not right?</span> You can easily return your item back to us within 14 days of receiving your order. For full terms and conditions visit  <span style="text-decoration: underline;"><a href="https://nz.kowtowclothing.com/pages/returns" target="_blank" rel="noopener noreferrer">kowtowclothing.com/pages/returns</a></span></p><p><span style="font-weight:700;">Have a question?</span> Our customer care team are here to help, email us at customercare@kowtowclothing.com </p>
+            </td>
+          </tr>
+        </table>
+      </center>
+    </td>
+  </tr>
+</table>
+
+<img src="{{ 'notifications/spacer.png' | shopify_asset_url }}" class="spacer" height="1" />
+
+        </td>
+      </tr>
+    </table>
+  </body>
+</html>

@@ -72,6 +72,12 @@ a, a:hover, a:active, a:visited {
   text-decoration: none;
 }
 
+p > a {
+  text-decoration: underline;
+}
+
+{# button #}
+
 {# make link inside button full width #}
 .action.action--primary a {
   display: block !important;
@@ -91,19 +97,29 @@ p:not(:last-child) {
   font-style: italic;
 }
 
-{# affiliate logo #}
-.affiliate-logo:not(:last-child) {
-  margin-right: 20px;
+{# footer bottom #}
+.footer-bottom__text {
+  line-height: 1.5;
+  padding: 0;
+  margin: 0;
 }
-
-.footer-affiliates {
-  padding-top: 16px;
+.footer-bottom__logo {
+  height: 56px;
+  width: auto;
+}
+.footer-bottom__logo:not(:first-child) {
+  margin-left: 10px;
 }
 
 @media (min-width: {{ style.breakpoint.mobile }}) {
-  .footer-affiliates {
-    text-align: right !important;
-    padding-top: 0 !important;
+  .footer-bottom__text {
+    font-size: 24px;
+  }
+  .footer-bottom__logo {
+    height: 72px;
+  }
+  .footer-bottom__logo:not(:first-child) {
+    margin-left: 20px;
   }
 }
 
@@ -142,10 +158,13 @@ p:not(:last-child) {
   line-height: 1.4;
 }
 
-.customer-name {
+.intro-text, p.intro-text, .intro-text p {
   font-family: {{ style.font.family_alt }};
+  font-size: 15px;
 }
 
 .padded-small {
   padding: 0 8px;
 }
+
+.nowrap { white-space: nowrap; }
