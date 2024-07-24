@@ -9,7 +9,18 @@
 {# title - start #}
 {% block title %}
   {% verbatim %}
-    {% capture title %}
+  {% capture title %}{% endcapture %}
+  {% endverbatim %}
+
+  {{ parent() }}
+{% endblock %}
+{# title - end #}
+
+{# preview - start #}
+{% block preview %}
+  {% verbatim %}
+
+    {% capture delivery_brief %}
       Hi {{ customer.first_name }}, <br/>
       {% if fulfillment.item_count == item_count %}
         Your order is on the way!
@@ -27,15 +38,7 @@
         {% endif %}
       {% endif %}
     {% endcapture %}
-  {% endverbatim %}
 
-  {{ parent() }}
-{% endblock %}
-{# title - end #}
-
-{# preview - start #}
-{% block preview %}
-  {% verbatim %}
     {% capture tracking_company %}
       {% if fulfillment.tracking_numbers.size > 0 and fulfillment.tracking_company %}
         {{ fulfillment.tracking_company }}
@@ -59,31 +62,33 @@
     {% capture preview %}
       <!-- greeting -->
       <div class="intro-text">
-          {% if shipping_method.title == "Click and Collect — Wellington Store" %}
-            <p>Your order is ready for you to collect from our Wellington Flagship Store located at 29 College Street.</p>
-            <p>When you arrive one of our retail staff will assist you.</p>
-            <p>Our opening hours are:
-              <br>Monday - Saturday 10am – 5pm
-              <br>Sunday 11am – 4pm
-            </p>
-            <p>Click and Collect orders will be held in-store for 14 days. If your order is not collected within this timeframe, it will be cancelled and you will be refunded via your original payment method. </p>
-            <p>If you have any questions, please do not hesitate to get in touch. You can contact us via email at wellington@kowtowclothing.com, or by phone on 04 555 0457.</p>
-            <p>We look forward to seeing you soon.</p>
+        {% if shipping_method.title == "Click and Collect — Wellington Store" %}
+          <p>Hi {{ customer.first_name }}, <br/>Thank you for shopping with us.</p>
+          <p>Your order is ready for you to collect from our Wellington Flagship Store located at 29 College Street.</p>
+          <p>When you arrive one of our retail staff will assist you.</p>
+          <p>Our opening hours are:
+            <br>Monday - Saturday 10am – 5pm
+            <br>Sunday 11am – 4pm
+          </p>
+          <p>Click and Collect orders will be held in-store for 14 days. If your order is not collected within this timeframe, it will be cancelled and you will be refunded via your original payment method. </p>
+          <p>If you have any questions, please do not hesitate to get in touch. You can contact us via email at wellington@kowtowclothing.com, or by phone on 04 555 0457.</p>
+          <p>We look forward to seeing you soon.</p>
 
-          {% elsif shipping_method.title == "Click and Collect — Newmarket Store" %}
-            <p>Thank you for shopping with us.</p>
-            <p>Your order is ready for you to collect from our Newmarket Store located at 6 York Street.</p>
-            <p>When you arrive one of our retail staff will assist you.</p>
-            <p>Our opening hours are:
-              <br>Monday - Saturday 10am – 5pm
-              <br>Sunday 11am – 4pm
-            </p>
-            <p>Click and Collect orders will be held in-store for 14 days. If your order is not collected within this timeframe, it will be cancelled and you will be refunded via your original payment method. </p>
-            <p>If you have any questions, please do not hesitate to get in touch. You can contact us via email at newmarket@kowtowclothing.com, or by phone on 09 869 4583.</p>
-            <p>We look forward to seeing you soon.</p>
+        {% elsif shipping_method.title == "Click and Collect — Newmarket Store" %}
+          <p>Hi {{ customer.first_name }}, <br/>Thank you for shopping with us.</p>
+          <p>Your order is ready for you to collect from our Newmarket Store located at 6 York Street.</p>
+          <p>When you arrive one of our retail staff will assist you.</p>
+          <p>Our opening hours are:
+            <br>Monday - Saturday 10am – 5pm
+            <br>Sunday 11am – 4pm
+          </p>
+          <p>Click and Collect orders will be held in-store for 14 days. If your order is not collected within this timeframe, it will be cancelled and you will be refunded via your original payment method. </p>
+          <p>If you have any questions, please do not hesitate to get in touch. You can contact us via email at newmarket@kowtowclothing.com, or by phone on 09 869 4583.</p>
+          <p>We look forward to seeing you soon.</p>
 
-          {% else %}
-            <p>
+        {% else %}
+          <p>{{ delivery_brief }}</p>
+          <p>
             {% if fulfillment.item_count == item_count %}
               <!-- all dispatch in one shipment -->
               And will be delivered to you shortly {{ with_tracking_company }}.
@@ -104,12 +109,11 @@
                 And will be delivered shortly {{ with_tracking_company }}.
               {% endif %}
             {% endif %}
-          {% endif %}
-        </p>
+          </p>
+        {% endif %}
         <p>Our current delivery time frames are 2-3 working days. Please refer to our <a href="{{ order_status_url }}" target="_blank" rel="noopener noreferrer">shipping page</a> for any current updates.</p>
       </div>
     {% endcapture %}
-    
   {% endverbatim %}
 
   {{ parent() }}
