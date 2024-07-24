@@ -2,26 +2,22 @@
   <mj-wrapper>
     <mj-section>
       <mj-column css-class="full-width">
-        <mj-divider border-color="{{ style.color['black'] }}" padding="72px 0 24px" />
+        <mj-divider border-color="{{ style.color['black'] }}" padding="72px 0 20px" />
       </mj-column>
     </mj-section>
-    <mj-section css-class="padded-small">
+    <mj-section css-class="padded-zero">
       <mj-column css-class="full-width">
         <mj-table>
           <tr>
             <td valign="top" class="footer-bottom__text">
               All Fairtrade organic cotton. <br/>All plastic-free.
             </td>
-            <td valign="top" class="nowrap" align="right">
+            <td valign="top" class="footer-bottom__logos nowrap" align="right">
               {% include '@components::local/affiliates.twig' with {
                 logos: [
                   {
-                    src: development ? server ~ '/assets/logo1.png' : "https://cdn.shopify.com/s/files/1/0053/6592/files/fairtrade-logo.png?v=1721014098",
+                    src: development ? server ~ '/assets/certification-logos.png' : "https://cdn.shopify.com/s/files/1/0053/6592/files/certification-logos.png?v=1721710490",
                     alt: 'Logo 1'
-                  },
-                  {
-                    src: development ? server ~ '/assets/logo2.png' : "https://cdn.shopify.com/s/files/1/0053/6592/files/b-corp-logo.png?v=1721014097",
-                    alt: 'Logo 2'
                   }
                 ]
               } %}
@@ -32,7 +28,7 @@
     </mj-section>
     <mj-section>
       <mj-column css-class="full-width">
-        <mj-divider border-color="{{ style.color['black'] }}" padding="24px 0 16px" />
+        <mj-divider border-color="{{ style.color['black'] }}" padding="12px 0" />
       </mj-column>
     </mj-section>
   </mj-wrapper>

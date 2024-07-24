@@ -45,7 +45,7 @@ body, * {
 
 {# container #}
 .container {
-  padding: 48px 16px 8px;
+  padding: 48px 10px 10px;
   margin: 0px auto;
   max-width: 100%;
   background: {{ style.color.white }};
@@ -99,28 +99,17 @@ p:not(:last-child) {
 
 {# footer bottom #}
 .footer-bottom__text {
-  line-height: 1.5;
+  font-size: 18px;
+  line-height: 1.3;
   padding: 0;
   margin: 0;
 }
+.footer-bottom__logos {
+  width: 100px;
+}
 .footer-bottom__logo {
-  height: 56px;
-  width: auto;
-}
-.footer-bottom__logo:not(:first-child) {
-  margin-left: 10px;
-}
-
-@media (min-width: {{ style.breakpoint.mobile }}) {
-  .footer-bottom__text {
-    font-size: 24px;
-  }
-  .footer-bottom__logo {
-    height: 72px;
-  }
-  .footer-bottom__logo:not(:first-child) {
-    margin-left: 20px;
-  }
+  width: 100%;
+  height: auto;
 }
 
 {# FAQ #}
@@ -165,6 +154,10 @@ p:not(:last-child) {
 
 .padded-small {
   padding: 0 8px;
+}
+
+.padded-zero {
+  padding: 0;
 }
 
 .nowrap { white-space: nowrap; }

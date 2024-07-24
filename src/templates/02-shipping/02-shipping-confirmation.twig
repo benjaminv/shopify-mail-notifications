@@ -10,6 +10,7 @@
 {% block title %}
   {% verbatim %}
     {% capture title %}
+      Hi {{ customer.first_name }}, <br/>
       {% if fulfillment.item_count == item_count %}
         Your order is on the way!
       {% elsif fulfillment.item_count > 1 %}
@@ -42,7 +43,7 @@
     {% endcapture %}
 
     {% if fulfillment.tracking_company %}
-      {% assign with_tracking_company = ' with ' | append: tracking_company %}
+      {% assign with_tracking_company = ' via ' | append: tracking_company %}
     {% else %}
       {% assign with_tracking_company = '' %}
     {% endif %}
@@ -58,10 +59,8 @@
     {% capture preview %}
       <!-- greeting -->
       <div class="intro-text">
-        <p>Hi {{ customer.first_name }}, <br/>
-
           {% if shipping_method.title == "Click and Collect — Wellington Store" %}
-            Your order is ready for you to collect from our Wellington Flagship Store located at 29 College Street.</p>
+            <p>Your order is ready for you to collect from our Wellington Flagship Store located at 29 College Street.</p>
             <p>When you arrive one of our retail staff will assist you.</p>
             <p>Our opening hours are:
               <br>Monday - Saturday 10am – 5pm
@@ -84,24 +83,25 @@
             <p>We look forward to seeing you soon.</p>
 
           {% else %}
+            <p>
             {% if fulfillment.item_count == item_count %}
               <!-- all dispatch in one shipment -->
-              Your order is on the way{{ with_tracking_company }}.
+              And will be delivered to you shortly {{ with_tracking_company }}.
             {% elsif fulfillment.item_count > 1 %}
               {% if fulfillment_status == 'fulfilled' %}
                 <!-- last shipment -->
-                The final shipment of your order is on its way{{ with_tracking_company }}.
+                And will be delivered shortly {{ with_tracking_company }}.
               {% else %}
                 <!-- partial shipment -->
-                Part of your order is on its way{{ with_tracking_company }}.
+                And will be delivered to you shortly {{ with_tracking_company }}. The remaining item/s in your order will be sent separately, and you will receive a new confirmation once this has shipped.
               {% endif %}
             {% else %}
               {% if fulfillment_status == 'fulfilled' %}
                 <!-- last item of order -->
-                The final shipment of your order is on its way{{ with_tracking_company }}.
+                And will be delivered shortly {{ with_tracking_company }}.
               {% else %}
                 <!-- last item of order -->
-                Part of your order is on its way{{ with_tracking_company }}.
+                And will be delivered shortly {{ with_tracking_company }}.
               {% endif %}
             {% endif %}
           {% endif %}
@@ -132,7 +132,7 @@
     {% include '@components::local/actions.twig' with {
       primary: {
         url: '{{ fulfillment.tracking_url }}',
-        text: 'TRACK ON {{ fulfillment.tracking_company | upcase }}'
+        text: 'TRACK YOUR ORDER'
       }
     } %}
 

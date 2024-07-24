@@ -3,9 +3,9 @@ style:
     mobile: 480px
   max-width: 640px
   font:
-    family: "'neuzeit-grotesk', -apple-system, 'system-ui', 'Helvetica Neue', Helvetica, Arial, sans-serif"
-    family_secondary: "'PPNeueMontreal', -apple-system, 'system-ui', 'Helvetica Neue', Helvetica, Arial, sans-serif"
-    family_alt: "'GT Alpina Standard', -apple-system, 'system-ui', 'Helvetica Neue', Helvetica, Arial, sans-serif"
+    family: "'neuzeit-grotesk','Helvetica Neue', Helvetica, -apple-system, 'system-ui' , Arial, sans-serif"
+    family_secondary: "'PPNeueMontreal', 'Helvetica Neue', Helvetica, -apple-system, 'system-ui' , Arial, sans-serif"
+    family_alt: "'GT Alpina Standard', Georgia, 'Times New Roman', Times, -apple-system, 'system-ui' , Arial, sans-serif"
     size:
       small: 0.8rem
       normal: 1rem
