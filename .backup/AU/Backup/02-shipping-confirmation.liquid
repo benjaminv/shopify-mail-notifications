@@ -1,0 +1,242 @@
+{% capture email_title %}SHIPPING CONFIRMATION{% endcapture %}
+
+
+  {% capture email_body %}
+  
+  
+    {% if requires_shipping %}
+  
+        
+          <p>Thank you for shopping with us – your order is now on its way!</p>
+           <p>To track your delivery, visit the link below:</p><br>
+          <span style="text-align:center;text-transform: uppercase;font-weight:700;margin:20px auto;border:1px solid #ccc;display: block;width: 65%;padding: 15px;text-decoration:none;"><a href="https://app.starshipit.com/BrandedTrack.aspx?code={{ fulfillment.tracking_number }}">{{ fulfillment.tracking_number }}</a></span><br>
+          
+  
+  
+    {% endif %}
+  
+  {% endcapture %}
+  
+  
+  <!DOCTYPE html>
+  <html lang="en">
+    <head>
+    <title>{{ email_title }}</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <meta name="viewport" content="width=device-width">
+    <link rel="stylesheet" type="text/css" href="/assets/notifications/styles.css">
+    <style>
+      .button__cell { background:black; border-radius:0;}
+      .button__text {padding: 15px;letter-spacing: .1em;font-weight: 500;}
+      .main-action-cell{float:none;width: 70%;margin-left:auto;margin-right:auto;}
+      .order-list__item-price, .order-list__item-title, .order-list__item-variant {color:black;font-weight:inherit;}
+      .order-list__item {border:0;}
+      /*.section, section, */.footer {border:0;}
+      a, a:hover, a:active, a:visited { text-decoration:underline; color:black;}
+      a, p, h1, h2, h3, td, span {font-family: "neuzeit-grotesk", -apple-system, BlinkMacSystemFont, "Helvetica Neue", "Helvetica", "Arial", sans-serif; letter-spacing:.04em; font-weight:300;font-size:12px;}
+      h1 {font-weight: 700;text-align: center;font-size: 2.8em;letter-spacing: .12em;padding:20px 0;color:black;}
+      h3 {letter-spacing:.1em;text-transform:uppercase;margin:0;font-size:11px;}
+      .grey {color:#bbb;}
+      p {color:black;} 
+      strong {color:black;font-weight:600;font-size:12px;letter-spacing:.06em;}
+      @media only screen and (max-device-width: 568px){
+        p, span, a, strong {
+        font-size:10px !important;
+        letter-spacing:.02em !important;
+      }
+      h3 {
+        font-size:9.5px !important;
+      }
+      h1{
+        font-size:20px !important;
+      }
+      .logo-img {
+        width:75px!important;
+        height:auto!important;
+      }
+      .subtotal-spacer{
+        display:none;
+      }
+      .main-action-cell{
+        width:100%;
+        margin-right:auto!important;
+      }
+      }
+  
+    </style>
+  </head>
+  
+    <body>
+  <!--[if !gte mso 9]><!--><span style="display:none; font-size:0px; line-height:0px; max-height:0px; max-width:0px; opacity:0; overflow:hidden; visibility:hidden; mso-hide:all;">Thank you for shopping with us.</span>
+      <!-- Insert ‌  hack after hidden preview text --><span style="display:none; font-size:0px; line-height:0px; max-height:0px; max-width:0px; opacity:0; overflow:hidden; visibility:hidden; mso-hide:all;"> ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌</span>
+      <!--<![endif]-->
+      <table class="body">
+        <tr>
+          <td>
+  
+  <table class="header row">
+    <tr>
+      <td class="header__cell">
+        <center>
+  
+          <table class="container">
+            <tr>
+              <td>
+  
+                <table class="row">
+                  <tr>
+                    <td class="shop-name__cell">
+                      {%- if shop.email_logo_url %}
+                        <img class="logo-img" src="{{shop.email_logo_url}}" alt="{{ shop.name }}" width="{{ shop.email_logo_width }}">
+                      {%- else %}
+                        <h1 class="shop-name__text">
+                          <a href="{{shop.url}}">{{ shop.name }}</a>
+                        </h1>
+                      {%- endif %}
+                    </td>
+                    <td>
+                      <h3 class="grey" style="text-align:right;">ORDER {{ order_name }}</h3>
+                    </td>   
+                  </tr>
+                </table>
+  
+                <table class="row" style="margin-top:20px;">
+                    <tr>
+                      <td align="center" valign="middle" style="padding:18px 0;border-top:1px solid black;border-bottom:1px solid black;">
+                        <h3 style="font-weight:700;">ORDER PLACED&nbsp;&nbsp;&nbsp;>&nbsp;&nbsp;&nbsp;IN&nbsp;PROGRESS&nbsp;&nbsp;&nbsp;>&nbsp;&nbsp;&nbsp;<u>SHIPPED</u></h3>
+                      </td>
+                    </tr>
+                </table>
+  
+              </td>
+            </tr>
+          </table>
+  
+        </center>
+      </td>
+    </tr>
+  </table>
+  
+  
+  <table class="row content">
+    <tr>
+      <td class="content__cell">
+        <center>
+          <table class="container">
+            <tr>
+              <td> 
+                <h1>{{ email_title }}</h1>
+                <p>{{ email_body }}</p>
+              </td>
+            </tr>
+          </table>
+        </center>
+      </td>
+    </tr>
+  </table>
+  
+  
+  <table class="row section">
+    <tr>
+      <td class="section__cell" style="padding-bottom:0;">
+        <center>
+          <table class="container">
+            <tr>
+              <td>
+                <h3><strong>Your delivery information</strong></h3><br>
+              </td>
+            </tr>
+          </table>
+          <table class="container">
+            <tr>
+              <td>
+                
+              <table class="row">
+                <tr>
+                  {% if requires_shipping and shipping_address %}
+                  <td class="customer-info__item">
+                    <strong>Shipping Address</strong>
+                    <p>
+    {{ shipping_address.name }}<br/>
+  {% if shipping_address.company %}
+    {{ shipping_address.company }}<br/>
+    {% endif %}
+    {{ shipping_address.address1 }}<br/>
+    {% if shipping_address.address2 %}
+    {{ shipping_address.address2 }}<br/>
+    {% endif %}
+    {{ shipping_address.city }} {{ shipping_address.zip }}
+    <br/>{{ shipping_address.country }}
+  </p>
+  
+                  </td>
+                  {% endif %}
+                </tr>
+              </table>
+  
+              {% if order_status_url %}
+  
+  <table class="row actions">
+    <tr>
+      <td class="actions__cell">
+  
+        <table class="button main-action-cell">
+          <tr>
+            <td class="button__cell"><a href="{{ order_status_url }}" class="button__text">VIEW ORDER STATUS</a></td>
+          </tr>
+        </table>
+  
+      </td>
+    </tr>
+  </table>
+  
+  {% else %}{% if shop.url %}
+  
+  <table class="row actions">
+    <tr>
+      <td class="actions__cell">
+        <table class="button main-action-cell">
+          <tr>
+            <td class="button__cell"><a href="{{ shop.url }}" class="button__text">VISIT OUR STORE</a></td>
+          </tr>
+        </table>
+      </td>
+    </tr>
+  </table>
+  
+  {% endif %}
+  
+  {% endif %}
+  
+              </td>
+            </tr>
+          </table>
+        </center>
+      </td>
+    </tr>
+  </table>
+  
+            <table class="row footer">
+    <tr>
+      <td class="footer__cell">
+        <center>
+          <table class="container">
+            <tr>
+              <td style="padding:25px 10px;border-top:1px solid black;border-bottom:1px solid black;">
+                <p><strong>Have a question?</strong> Our customer care team is here to help. Email us at <a style="text-decoration: underline;font-weight: 400;font-size:12px;letter-spacing:.05em;" href="mailto:customercare@kowtowclothing.com?Subject=Order%20enquiry">customercare@kowtowclothing.com</a> </em></p><br><strong>Change your mind?</strong> We hope that you will love everything that you order, but if something isn’t quite right you can easily return it back to us within 14 days of your delivery date. See our <a href="/pages/returns" style="text-decoration: underline;">returns policy</a> for details.<p>
+              </td>
+            </tr>
+          </table>
+        </center>
+      </td>
+    </tr>
+  </table>
+  
+  <img src="{{ 'notifications/spacer.png' | shopify_asset_url }}" class="spacer" height="1" />
+  
+          </td>
+        </tr>
+      </table>
+    </body>
+  </html>
+  
