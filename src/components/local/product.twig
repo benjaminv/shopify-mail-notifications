@@ -159,7 +159,7 @@
 
 							{% block tag %}
 								{% verbatim %}
-									{% for tag in line_item.tags %}
+									{% for tag in line_item.product.tags %}
 										{% if tag == 'final-sale' %}
 											<div class="discount">Final Sale</div>
 										{% endif %}

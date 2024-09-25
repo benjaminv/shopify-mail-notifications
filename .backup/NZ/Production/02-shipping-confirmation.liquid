@@ -290,14 +290,16 @@
                                   style="font-family:neuzeit-grotesk,'Helvetica Neue',Helvetica,-apple-system,'system-ui',Arial,sans-serif;font-size:0;line-height:1.5;text-align:center;color:#000">
                                   <a href="{{ shop.url }}" style="display:inline-block"> <img
                                       src="{{ shop.email_logo_url }}" alt="{{ shop.name }}"
-                                      width="{{ shop.email_logo_width }}"> </a></div>
+                                      width="{{ shop.email_logo_width }}"> </a>
+                                </div>
                               </td>
                             </tr> {% else %} <tr>
                               <td align="left" style="font-size:0px;padding:0;word-break:break-word">
                                 <div
                                   style="font-family:neuzeit-grotesk,'Helvetica Neue',Helvetica,-apple-system,'system-ui',Arial,sans-serif;font-size:32px;font-weight:700;line-height:1.5;text-align:left;color:#000">
                                   <a href="{{ shop.url }}" style="display:inline-block;color:#464646"> {{ shop.name }}
-                                  </a></div>
+                                  </a>
+                                </div>
                               </td>
                             </tr> {% endif %} </tbody>
                         </table>
@@ -617,7 +619,8 @@
                                             <tr> {% if line_item.image %} <td style="width:60px;padding-right:15px">
                                                 <img src="{{ line_item | img_url: 'compact_cropped' }}" width="60px"
                                                   height="60px"
-                                                  style="border:1px solid #e1e1e1;vertical-align:middle" /> </td> {%
+                                                  style="border:1px solid #e1e1e1;vertical-align:middle" />
+                                              </td> {%
                                               endif %} <td> {% if line_item.product.title %} {% assign line_title =
                                                 line_item.product.title %} {% else %} {% assign line_title =
                                                 line_item.title %} {% endif %}
@@ -637,7 +640,7 @@
                             style="vertical-align:bottom;padding-right:4px" /> <span
                             style="color:#242221;font-size:14px"> {{ discount_allocation.discount_application.title |
                             upcase }} (-{{ discount_allocation.amount | money }}) </span> </span> {% endif %} {% endfor
-                        %} {% endif %} {% for tag in line_item.tags %} {% if tag == 'final-sale' %} <div
+                        %} {% endif %} {% for tag in line_item.product.tags %} {% if tag == 'final-sale' %} <div
                           class="discount">Final Sale</div> {% endif %} {% endfor %}
                       </td>
                     </tr>
@@ -825,7 +828,8 @@
                                           style="color:#000;font-family:neuzeit-grotesk,'Helvetica Neue',Helvetica,-apple-system,'system-ui',Arial,sans-serif;font-size:13px;line-height:22px;table-layout:auto;width:100%;border:none">
                                           <tr>
                                             <td valign="top" class="footer-bottom__text"> All Fairtrade organic cotton.
-                                              <br />All plastic-free. </td>
+                                              <br />All plastic-free.
+                                            </td>
                                             <td valign="top" class="footer-bottom__logos nowrap" align="right"> <img
                                                 class="footer-bottom__logo"
                                                 src="https://cdn.shopify.com/s/files/1/0053/6592/files/certification-logos.png?v=1721710490"
